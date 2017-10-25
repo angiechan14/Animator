@@ -2,9 +2,9 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-import cs3500.hw05.AShape;
-import cs3500.hw05.OvalShape;
-import cs3500.hw05.RectangleShape;
+import cs3500.hw05.model.AShape;
+import cs3500.hw05.model.OvalShape;
+import cs3500.hw05.model.RectangleShape;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package cs3500.hw05;
+package cs3500.hw05.model;
 
 /** Command to move a shape.
  */

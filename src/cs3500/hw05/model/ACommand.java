@@ -1,4 +1,4 @@
-package cs3500.hw05;
+package cs3500.hw05.model;
 
 /** Abstract class that defines some behavior for given commands and can be extended by new
  * commands should they be added.

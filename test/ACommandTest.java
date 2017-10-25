@@ -2,13 +2,13 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-import cs3500.hw05.ACommand;
-import cs3500.hw05.AShape;
-import cs3500.hw05.ChangeCommand;
-import cs3500.hw05.MoveCommand;
-import cs3500.hw05.OvalShape;
-import cs3500.hw05.RectangleShape;
-import cs3500.hw05.ScaleCommand;
+import cs3500.hw05.model.ACommand;
+import cs3500.hw05.model.AShape;
+import cs3500.hw05.model.ChangeCommand;
+import cs3500.hw05.model.MoveCommand;
+import cs3500.hw05.model.OvalShape;
+import cs3500.hw05.model.RectangleShape;
+import cs3500.hw05.model.ScaleCommand;
 
 import static org.junit.Assert.assertEquals;
 

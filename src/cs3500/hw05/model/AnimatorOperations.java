@@ -1,8 +1,7 @@
-package cs3500.hw05;
+package cs3500.hw05.model;
 
 import java.util.List;
 import java.awt.Color;
-import cs3500.hw05.AShape.ShapeType;
 
 /**
  * This is the interface of the Animator Model. It defines the behavior of the model. I chose
