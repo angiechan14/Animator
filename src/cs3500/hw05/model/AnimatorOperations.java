@@ -22,9 +22,8 @@ public interface AnimatorOperations {
    * animation.
    * @param shapeList        list of shapes to be shown
    * @param actionList       list of actions to be performed on the shapes
-   * @param timeMultiplier   int for speeding up animation
    */
-  void startAnimation(List<AShape> shapeList, List<ACommand> actionList, int timeMultiplier);
+  void startAnimation(List<AShape> shapeList, List<ACommand> actionList);
 
   /**
    * This method will eventually be called by the controller to perform a command on a certain
@@ -47,27 +46,26 @@ public interface AnimatorOperations {
    * @param xSize   x size
    * @param ySize   y size
    */
-  void addShape(String name, AShape.ShapeType type, int x, int y, Color color, int timeAppear,
-                int timeDisappear, int xSize, int ySize);
-
-  /**
-   * This method will eventually be called by the controller to perform a command on a certain
-   * shape. It must be here for the Controller to have any effect on the actual shapes in the
-   * model.
-   * @param name   shape to be removed
-   */
-  void removeShape(String name);
+  void addShape(String name, AShape.ShapeType type, double x, double y, Color color, int timeAppear,
+                int timeDisappear, double xSize, double ySize);
 
   /**
    * This method makes a new command from the given parameters and adds it to the list.
-   * @param name   name of the shape to perform on
+   * @param shapeName   name of the shape to perform on
    */
-  void addCommand(String name);
+  void addScaleCommand(String shapeName, int startTime, int endTime, double x, double y);
 
   /**
-   * This method will eventually be called by the controller to perform a command on a certain
-   * shape. It must be here for the Controller to have any effect on the actual shapes in the
-   * model.
+   * This method makes a new command from the given parameters and adds it to the list.
    */
-  void removeCommand(String name);
+  void addChangeCommand(String shapeName, int startTime, int endTime, Color color);
+
+  /**
+   * This method makes a new command from the given parameters and adds it to the list.
+   */
+  void addMoveCommand(String shapeName, int startTime, int endTime, double x, double y);
+
+  List<AShape> getShapeList();
+
+  List<ACommand> getCommandList();
 }

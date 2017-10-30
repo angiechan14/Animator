@@ -12,8 +12,7 @@ import java.util.List;
 public class AnimatorModel implements AnimatorOperations {
 
   private List<AShape> shapeList;
-  private List<ACommand> actionList;
-  private int timeMultiplier;
+  private List<ACommand> commandList;
 
   /**
    * This is the interface of the Animator Model. It defines the behavior of the model.
@@ -21,16 +20,13 @@ public class AnimatorModel implements AnimatorOperations {
 
   public AnimatorModel() {
     shapeList = new ArrayList<>();
-    actionList = new ArrayList<>();
-    timeMultiplier = 0;
+    commandList = new ArrayList<>();
   }
 
   @Override
-  public void startAnimation(List<AShape> shapeList, List<ACommand> actionList,
-                             int timeMultiplier) {
+  public void startAnimation(List<AShape> shapeList, List<ACommand> actionList) {
     this.shapeList = shapeList;
-    this.actionList = actionList;
-    this.timeMultiplier = timeMultiplier;
+    this.commandList = actionList;
 
     // sorts action list by startingTime
     actionList.sort(Comparator.comparingInt(ACommand::getStartTime));
@@ -43,36 +39,50 @@ public class AnimatorModel implements AnimatorOperations {
 
   @Override
   public void move(ACommand curCommand, int curTime) {
-    curCommand.command(curCommand.getShape(), curTime * timeMultiplier);
+    curCommand.command(curCommand.getShape(), curTime);
   }
 
   @Override
-  public void addShape(String name, AShape.ShapeType type, int x, int y, Color color,
-                       int timeAppear, int timeDisappear, int xSize, int ySize) {
-
+  public void addShape(String name, AShape.ShapeType type, double x, double y, Color color,
+                       int timeAppear, int timeDisappear, double xSize, double ySize) {
+    switch (type) {
+      case OVAL:
+        shapeList.add(new OvalShape(x, y, color, name, timeAppear, timeDisappear,
+                xSize, ySize));
+        break;
+      case RECTANGLE: shapeList.add(new RectangleShape(x, y, color, name, timeAppear, timeDisappear,
+              xSize, ySize));
+        break;
+      default: throw new IllegalArgumentException("not a valid type");
+    }
   }
 
   @Override
-  public void removeShape(String name) {
+  public void addScaleCommand(String shapeName, int startTime, int endTime, double x, double y) {
+    AShape getShape = findShape(shapeName);
 
+    commandList.add(new ScaleCommand(getShape, startTime, endTime, x, y));
   }
 
   @Override
-  public void addCommand(String name) {
+  public void addChangeCommand(String shapeName, int startTime, int endTime, Color color) {
+    AShape getShape = findShape(shapeName);
 
+    commandList.add(new ChangeCommand(getShape, startTime, endTime, color));
   }
 
   @Override
-  public void removeCommand(String name) {
+  public void addMoveCommand(String shapeName, int startTime, int endTime, double x, double y) {
+    AShape getShape = findShape(shapeName);
 
+    commandList.add(new ScaleCommand(getShape, startTime, endTime, x, y));
   }
 
   @Override
   public String printInstructions() {
-    if (actionList.isEmpty() && shapeList.isEmpty()) {
+    if (commandList.isEmpty() && shapeList.isEmpty()) {
       return "";
-    }
-    else {
+    } else {
       StringBuilder instruct = new StringBuilder();
 
       instruct.append("Shapes:\n");
@@ -81,12 +91,20 @@ public class AnimatorModel implements AnimatorOperations {
         instruct.append(shape.printShape());
       }
 
-      for (ACommand command : actionList) {
+      for (ACommand command : commandList) {
         instruct.append(command.printCommand());
       }
 
       return instruct.toString();
     }
+  }
+
+  public List<AShape> getShapeList() {
+    return this.shapeList;
+  }
+
+  public List<ACommand> getCommandList() {
+    return this.commandList;
   }
 
   /**
@@ -106,6 +124,23 @@ public class AnimatorModel implements AnimatorOperations {
       }
     }
     return false;
+  }
+
+  /**
+   * Finds the shape in the list with the same name as the input.
+   */
+  private AShape findShape(String shapeName) {
+    AShape getShape = null;
+    for (AShape shape : shapeList) {
+      if (shape.getName().equals(shapeName)) {
+        getShape = shape;
+        break;
+      }
+    }
+    if (getShape == null) {
+      throw new IllegalArgumentException("shape not found");
+    }
+    return getShape;
   }
 
   /**

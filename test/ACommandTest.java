@@ -22,12 +22,9 @@ public class ACommandTest {
   private AShape rect = new RectangleShape(5.0, 20.0, new Color(63, 200, 113), "R",
           10, 50, 50.0, 20.0);
 
-  private ACommand move = new MoveCommand(rect, 5, 10,
-          "move",1.0, 2.0);
-  private ACommand scale = new ScaleCommand(circle, 10, 15,
-          "scale", 50.0, 30.0);
-  private ACommand change = new ChangeCommand(rect, 25, 30,
-          "change", new Color(5, 5, 5));
+  private ACommand move = new MoveCommand(rect, 5, 10,1.0, 2.0);
+  private ACommand scale = new ScaleCommand(circle, 10, 15,50.0, 30.0);
+  private ACommand change = new ChangeCommand(rect, 25, 30, new Color(5, 5, 5));
 
 
   @Test

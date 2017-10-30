@@ -11,9 +11,8 @@ public class MoveCommand extends ACommand {
 
   /** Constructor for a move command. Where it decides how much to change the shape.
    */
-  public MoveCommand(AShape shape, int startTime, int endTime, String name,
-                     double newX, double newY) {
-    super(shape, startTime, endTime, name);
+  public MoveCommand(AShape shape, int startTime, int endTime, double newX, double newY) {
+    super(shape, startTime, endTime);
     this.newX = newX;
     this.newY = newY;
     this.perTickX = (newX - shape.getX()) / (endTime - startTime);

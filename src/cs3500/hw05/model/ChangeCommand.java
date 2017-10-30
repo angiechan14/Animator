@@ -14,8 +14,8 @@ public class ChangeCommand extends ACommand {
   /** Constructor for a changing color command. This is where the command decides how much to
    * change the shape each tick.
    */
-  public ChangeCommand(AShape shape, int startTime, int endTime, String name, Color newColor) {
-    super(shape, startTime, endTime, name);
+  public ChangeCommand(AShape shape, int startTime, int endTime, Color newColor) {
+    super(shape, startTime, endTime);
     this.newColor = newColor;
     this.rPerTick = (newColor.getRed() - shape.getColor().getRed()) / (endTime - startTime);
     this.gPerTick = (newColor.getGreen() - shape.getColor().getGreen()) / (endTime - startTime);

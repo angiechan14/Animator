@@ -66,7 +66,7 @@ public abstract class AShape {
 
   /** Returns the String version of all the important information about the String.
    */
-  String printShape() {
+  public String printShape() {
     return "Name: " +
             name +
             "\n" +
@@ -80,6 +80,25 @@ public abstract class AShape {
             "\n" +
             "Disappears at t=" +
             String.valueOf(timeRemove) +
+            "\n\n";
+  }
+
+  /** Returns the String version of all the important information about the String.
+   */
+  public String printShape(double time) {
+    return "Name: " +
+            name +
+            "\n" +
+            "Type: " +
+            this.getPrint() +
+            ", Color: " +
+            color.toString().substring(14) +
+            "\n" +
+            "Appears at t=" +
+            String.valueOf(timeAppear / time) +
+            "\n" +
+            "Disappears at t=" +
+            String.valueOf(timeRemove / time) +
             "\n\n";
   }
 

@@ -29,12 +29,10 @@ public class AnimatorTest {
 
   private ArrayList<AShape> shapeList = new ArrayList<>();
 
-  private ACommand move = new MoveCommand(rect, 5, 10,
-          "move",1.0, 2.0);
-  private ACommand scale = new ScaleCommand(circle, 10, 15,
-          "scale", 50.0, 30.0);
+  private ACommand move = new MoveCommand(rect, 5, 10,1.0, 2.0);
+  private ACommand scale = new ScaleCommand(circle, 10, 15, 50.0, 30.0);
   private ACommand change = new ChangeCommand(rect, 25, 30,
-          "change", new Color(5, 5, 5));
+           new Color(5, 5, 5));
 
   private ArrayList<ACommand> commands = new ArrayList<>();
 
@@ -54,7 +52,7 @@ public class AnimatorTest {
   @Test
   // tests that the instructions print correctly
   public void checkInstruct() {
-    model.startAnimation(shapeList, commands, 1);
+    model.startAnimation(shapeList, commands);
     assertEquals(model.printInstructions(), "Shapes:\n" +
             "Name: O\n" +
             "Type: oval\n" +
@@ -82,7 +80,7 @@ public class AnimatorTest {
   @Test
   // test for move with scale and a givne time
   public void moveTest() {
-    model.startAnimation(shapeList, commands, 1);
+    model.startAnimation(shapeList, commands);
     model.move(scale, 15);
     assertEquals(circle.getXSize() == 50.0, true);
   }
@@ -90,15 +88,15 @@ public class AnimatorTest {
   @Test (expected = IllegalArgumentException.class)
   // tests that the model throws an error when there are incorrect commands
   public void checkBadList() {
-    commands.add(new MoveCommand(rect, 8, 9, "move3",  1.5,  9.0));
-    model.startAnimation(shapeList, commands, 1);
+    commands.add(new MoveCommand(rect, 8, 9,   1.5,  9.0));
+    model.startAnimation(shapeList, commands);
   }
 
   @Test
   // tests that the model doesn't throw an error when given correct commands
   public void checkBadList2() {
-    commands.add(new MoveCommand(rect, 26, 29, "move2", 1.5, 9.0));
-    model.startAnimation(shapeList, commands, 1);
+    commands.add(new MoveCommand(rect, 26, 29,  1.5, 9.0));
+    model.startAnimation(shapeList, commands);
 
     assertEquals(model.printInstructions(), "Shapes:\n" +
             "Name: O\n" +

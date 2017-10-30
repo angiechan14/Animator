@@ -11,15 +11,13 @@ public abstract class ACommand {
   private AShape shape;
   private int startTime;
   private int endTime;
-  private String name;
 
   /** Abstract constructor that defines the constructor that is common to all commands.
    */
-  ACommand(AShape shape, int startTime, int endTime, String name) {
+  ACommand(AShape shape, int startTime, int endTime) {
     this.shape = shape;
     this.startTime = startTime;
     this.endTime = endTime;
-    this.name = name;
     }
 
 
@@ -54,6 +52,19 @@ public abstract class ACommand {
             String.valueOf(startTime) +
             " to t=" +
             String.valueOf(endTime) + "\n";
+  }
+
+  /** Used for the common parts of writing the instructions out.
+   */
+  public String printCommand(double time) {
+    return "Shape " +
+            shape.getName() +
+            " " +
+            getMove(shape) +
+            "from t=" +
+            String.valueOf(startTime / time) +
+            " to t=" +
+            String.valueOf(endTime / time) + "\n";
   }
 
   /** Abstracted out the uncommon parts of writing the instructions out.

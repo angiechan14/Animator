@@ -12,9 +12,8 @@ public class ScaleCommand extends ACommand {
 
   /** Constructor for a scale command. Where it decides on how much to change the shape each tick.
    */
-  public ScaleCommand(AShape shape, int startTime, int endTime, String name,
-                      double newXSize, double newYSize) {
-    super(shape, startTime, endTime, name);
+  public ScaleCommand(AShape shape, int startTime, int endTime, double newXSize, double newYSize) {
+    super(shape, startTime, endTime);
     this.newXSize = newXSize;
     this.newYSize = newYSize;
     this.xSizePerTick = newXSize - shape.getXSize() / (endTime - startTime);
