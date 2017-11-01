@@ -39,4 +39,14 @@ public class ScaleCommand extends ACommand {
       shape.resize(curXSize, curYSize);
     }
   }
+
+  @Override
+  public String svgCommand() {
+    return "<animate attributeType=\"xml\" begin=\"" + getStartTime() * 1000 + "ms\" dur=\""
+            + (getEndTime() - getStartTime()) * 1000 + "ms\" attributeName=\"x\" from=\""
+            + getShape().getXSize() + "\" " + "to=\"" + newXSize + "\" fill=\"freeze\"/>"
+            + "<animate attributeType=\"xml\" begin=\"" + getStartTime() * 1000 + "ms\" dur=\""
+            + (getEndTime() - getStartTime()) * 1000 + "ms\" attributeName=\"y\" from=\""
+            + getShape().getYSize() + "\" " + "to=\"" + newYSize + "\" fill=\"freeze\"/>";
+  }
 }

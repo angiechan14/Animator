@@ -41,4 +41,13 @@ public class ChangeCommand extends ACommand {
       shape.recolor(new Color(curR, curG, curB));
     }
   }
+
+  @Override
+  public String svgCommand() {
+    return "<animateColor attributeType=\"xml\" begin=\"" + getStartTime() * 1000 + "ms\" dur=\""
+            + (getEndTime() - getStartTime()) * 1000 + "ms\" attributeName=\"fill\" from=\""
+            + getShape().getColorString() + "\" "
+            + "to=\"rgb(" + newColor.getRed() + "," + newColor.getGreen() + "," + newColor.getBlue()
+            + ")\" />";
+  }
 }

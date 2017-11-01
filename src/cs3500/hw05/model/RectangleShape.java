@@ -36,6 +36,18 @@ public class RectangleShape extends AShape {
   }
 
   @Override
+  public String svgShape() {
+    return "<rect id=\"" + getName() + "\" x=\"" + getX() + "\" y=\"" + getY() + "\" width=\""
+            + width + "\" height=\"" + height + "\" fill=\"" + getColorString() + "\""
+            + "visibility=\"visible\">";
+  }
+
+  @Override
+  public String svgEnd() {
+    return "</rect>";
+  }
+
+  @Override
   public double getXSize() {
     return width;
   }

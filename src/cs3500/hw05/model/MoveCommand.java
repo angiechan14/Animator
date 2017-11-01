@@ -39,4 +39,14 @@ public class MoveCommand extends ACommand {
       shape.move(curX, curY);
     }
   }
+
+  @Override
+  public String svgCommand() {
+    return "<animate attributeType=\"xml\" begin=\"" + getStartTime() * 1000 + "ms\" dur=\""
+            + (getEndTime() - getStartTime()) * 1000 + "ms\" attributeName=\"x\" from=\""
+            + getShape().getX() + "\" " + "to=\"" + newX + "\" fill=\"freeze\"/>"
+            + "<animate attributeType=\"xml\" begin=\"" + getStartTime() * 1000 + "ms\" dur=\""
+            + (getEndTime() - getStartTime()) * 1000 + "ms\" attributeName=\"y\" from=\""
+            + getShape().getY() + "\" " + "to=\"" + newY + "\" fill=\"freeze\"/>";
+  }
 }

@@ -115,7 +115,7 @@ public abstract class AShape {
   }
 
   String getColorString() {
-    return color.toString().substring(14);
+    return "rgb(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ")";
   }
 
   /** Gets the XSize of this shape given if its Rectangle or Oval.
@@ -133,6 +133,23 @@ public abstract class AShape {
   /** Resizes the given shape if its Rectangle or Oval.
    */
   public abstract void resize(double newWidth, double newHeight);
+
+  public abstract String svgShape();
+
+  @Override
+  public boolean equals(Object that) {
+    if (this == that) {
+      return true;
+    }
+    if (!(that instanceof AShape)) {
+      return false;
+    }
+    AShape commThat = (AShape)that;
+
+    return name.equals(commThat.name);
+  }
+
+  public abstract String svgEnd();
 
   public enum ShapeType {
     OVAL, RECTANGLE

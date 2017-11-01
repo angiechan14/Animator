@@ -76,6 +76,8 @@ public abstract class ACommand {
    */
   public abstract void command(AShape shape, int curTime);
 
+  public abstract String svgCommand();
+
   public enum CommandType {
     MOVE, CHANGE, SCALE
   }

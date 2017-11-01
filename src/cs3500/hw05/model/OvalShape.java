@@ -35,6 +35,18 @@ public class OvalShape extends AShape {
   }
 
   @Override
+  public String svgShape() {
+    return "<ellipse id=\"" + getName() + "\" cx=\"" + getX() + "\" cy=\"" + getY() + "\" rx=\""
+            + xRad + "\" ry=\"" + yRad + "\" fill=\"" + getColorString() + "\""
+            + "visibility=\"visible\">";
+  }
+
+  @Override
+  public String svgEnd() {
+    return "</ellipse>";
+  }
+
+  @Override
   public double getXSize() {
 
     return xRad;

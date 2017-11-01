@@ -14,7 +14,7 @@ public class VisualView extends JFrame implements IView {
   private JPanel animatorPanel;
   private JScrollPane scrollPane;
   private JTextField input;
-  Consumer<String> commandCallback;
+  private Consumer<String> commandCallback;
 
 
   public VisualView() {
@@ -61,10 +61,6 @@ public class VisualView extends JFrame implements IView {
     this.pack();
 
   }
-
-
-
-
 
   @Override
   public void display() {
