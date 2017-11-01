@@ -1,4 +1,4 @@
-package cs3500.hw05.model;
+package cs3500.animator.model;
 
 /** Command to move a shape.
  */

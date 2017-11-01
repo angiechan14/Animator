@@ -1,13 +1,10 @@
-package cs3500.hw05.view;
+package cs3500.animator.view;
 
 import java.io.OutputStream;
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
 
-import cs3500.hw05.model.ACommand;
-import cs3500.hw05.model.AShape;
-import cs3500.hw05.model.AnimatorOperations;
+import cs3500.animator.model.ACommand;
+import cs3500.animator.model.AShape;
 
 public class TextView implements IView {
   private int timeMultiplier;
@@ -43,5 +40,10 @@ public class TextView implements IView {
 
       System.out.println(instruct.toString());
     }
+  }
+
+  @Override
+  public void refresh() {
+
   }
 }

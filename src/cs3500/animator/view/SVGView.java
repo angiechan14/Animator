@@ -1,10 +1,10 @@
-package cs3500.hw05.view;
+package cs3500.animator.view;
 
 import java.io.OutputStream;
 import java.util.List;
 
-import cs3500.hw05.model.ACommand;
-import cs3500.hw05.model.AShape;
+import cs3500.animator.model.ACommand;
+import cs3500.animator.model.AShape;
 
 public class SVGView implements IView {
   private int timeMultiplier;
@@ -47,5 +47,10 @@ public class SVGView implements IView {
 
       System.out.println(instruct.toString());
     }
+  }
+
+  @Override
+  public void refresh() {
+
   }
 }

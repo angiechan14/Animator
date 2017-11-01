@@ -1,62 +1,49 @@
-package cs3500.hw05.view;
+package cs3500.animator.view;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import java.util.function.Consumer;
-
+import java.util.List;
+import cs3500.animator.model.AShape;
 
 import javax.swing.*;
 
 public class VisualView extends JFrame implements IView {
-  private JButton commandButton,quitButton;
-  private JPanel buttonPanel;
+  private JButton quitButton;
   private JPanel animatorPanel;
   private JScrollPane scrollPane;
-  private JTextField input;
-  private Consumer<String> commandCallback;
+  private List<AShape> shapes;
+  private JPanel buttonPanel;
 
-
-  public VisualView() {
+  public VisualView(List<AShape> shapes) {
     super();
 
+    this.shapes = shapes;
+    this.animatorPanel = new JPanel();
     this.setTitle("Animator");
-    this.setSize(500,500);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setSize(600,600);
+    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     //use a borderlayout with drawing panel in center and button panel in south
     this.setLayout(new BorderLayout());
-    animatorPanel = new JPanel();
     animatorPanel.setPreferredSize(new Dimension(500,500));
+
+    for (AShape shape : this.shapes) {
+      animatorPanel.add(new ShapePanel(shape));
+    }
+
     scrollPane = new JScrollPane(animatorPanel);
     this.add(scrollPane,BorderLayout.CENTER);
 
-    //button panel
     buttonPanel = new JPanel();
     buttonPanel.setLayout(new FlowLayout());
     this.add(buttonPanel,BorderLayout.SOUTH);
-
-    //input textfield
-    input = new JTextField(15);
-    buttonPanel.add(input);
-
-    //buttons
-    commandButton = new JButton("Execute");
-    commandButton.addActionListener((ActionEvent e) ->
-    {
-      if (commandCallback!=null) { //if there is a command callback
-        commandCallback.accept(input.getText()); //send command to be processed
-        input.setText(""); //clear the input text field
-      }
-    });
-    buttonPanel.add(commandButton);
 
     //quit button
     quitButton = new JButton("Quit");
     quitButton.addActionListener((ActionEvent e)-> {System.exit(0);});
     buttonPanel.add(quitButton);
 
-    commandCallback = null;
 
     this.pack();
 
@@ -64,6 +51,11 @@ public class VisualView extends JFrame implements IView {
 
   @Override
   public void display() {
+    this.setVisible(true);
+  }
 
+  @Override
+  public void refresh() {
+    this.repaint();
   }
 }
